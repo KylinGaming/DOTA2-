@@ -35,12 +35,13 @@ with open("%s"%demo, "r", encoding="utf-8") as fp:  #这里改成你要解析的
                 if re.findall(findplay_hero, play_list[num]) != []:
                     play_hero_name = re.findall(findplay_hero, play_list[num])
                     shi=play_hero_name[0][1]
-                    getChinese=re.compile('%s:(.*)\n'%shi,re.S)
+                    getChinese=re.compile('^%s:(.*)\n'%shi,re.S)
                     hero_name.append(play_hero_name[0][0])
                     with open("英雄名.txt","r",encoding="utf-8") as f:
                         for lin in f.readlines():
                             if re.findall(getChinese,lin)!=[]:
                                 hero_chinese_name.append(re.findall(getChinese,lin)[0])
+                                    break
                     flags = flags + 1
                 num = num + 1
                 gettime = re.findall(get_times, play_list[num])[0]
